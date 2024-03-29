@@ -1,0 +1,35 @@
+name: Merge to milestone branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+job:
+  merge_milestone:
+    name: merge-milestone
+    environment: milestone
+    runs-on: ubuntu-latest
+    steps:
+      - name: merge
+        uses: mtanzi/action-automerge@v1
+        id: merge
+        with:
+          github_token: ${{ github.token }}
+          source: 'main'
+          target: 'milestone'
+          webhook_url:
+  merge_staging:
+    name: merge-staging
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: merge
+        uses: mtanzi/action-automerge@v1
+        id: merge
+        with:
+          github_token: ${{ github.token }}
+          source: 'main'
+          target: 'staging'
+          webhook_url:
