@@ -23,7 +23,7 @@ jobs:
           target: 'milestone'
           webhook_url:
       - name: attach label
-        uses: action/labeler@v5
+        uses: actions/labeler@v5
         with:
           repo-token: "${{ secrets.TOKEN_TEST }}"
   merge_staging:
