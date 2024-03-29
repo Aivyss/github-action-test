@@ -5,6 +5,10 @@ on:
   push:
     branches:
       - main
+    types:
+      - opened
+      - synchronize
+      - reopened
 env:
   PR_NUMBER: ${{ github.event.number }}
 
