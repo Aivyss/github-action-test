@@ -10,7 +10,7 @@ jobs:
     name: merge-milestone
     environment: milestone
     runs-on: ubuntu-latest
-    permission:
+    permissions:
       contents: read
       pull-requests: write
     steps:
