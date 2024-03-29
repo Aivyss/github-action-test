@@ -2,4 +2,4 @@ milestone:
   - base-branch: 'main'
 
 staging:
-  -base-branch: 'milestone'
+  - base-branch: 'milestone'
