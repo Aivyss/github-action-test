@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main
+env:
+  PR_NUMBER: ${{ github.event.number }}
+
 jobs:
   merge_milestone:
     name: merge-milestone
