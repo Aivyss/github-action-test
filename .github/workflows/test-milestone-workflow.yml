@@ -10,6 +10,9 @@ jobs:
     name: merge-milestone
     environment: milestone
     runs-on: ubuntu-latest
+    permission:
+      contents: read
+      pull-requests: write
     steps:
       - name: merge
         uses: mtanzi/action-automerge@v1
@@ -19,6 +22,10 @@ jobs:
           source: 'main'
           target: 'milestone'
           webhook_url:
+      - name: attach label
+        uses: action/labeler@v5
+        with:
+          repo-token: "${{ secrets.TOKEN_TEST }}"
   merge_staging:
     name: merge-staging
     environment: staging

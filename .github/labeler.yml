@@ -1,0 +1,5 @@
+milestone:
+  - head-branch: ['^main']
+
+staging:
+  -base-branch: 'milestone'
