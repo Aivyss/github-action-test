@@ -2,9 +2,11 @@ name: Merge to milestone branch
 
 on:
   workflow_dispatch:
-  push:
+  pull-request:
     branches:
       - main
+    types:
+      - opened
 jobs:
   merge_milestone:
     name: merge-milestone
