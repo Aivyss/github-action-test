@@ -5,8 +5,7 @@ on:
   push:
     branches:
       - main
-
-job:
+jobs:
   merge_milestone:
     name: merge-milestone
     environment: milestone
@@ -16,7 +15,7 @@ job:
         uses: mtanzi/action-automerge@v1
         id: merge
         with:
-          github_token: ${{ github.token }}
+          github_token: ${{ secrets.TOKEN_TEST }}
           source: 'main'
           target: 'milestone'
           webhook_url:
@@ -29,7 +28,7 @@ job:
         uses: mtanzi/action-automerge@v1
         id: merge
         with:
-          github_token: ${{ github.token }}
+          github_token: ${{ secrets.TOKEN_TEST }}
           source: 'main'
           target: 'staging'
           webhook_url:
