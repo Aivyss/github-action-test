@@ -2,9 +2,10 @@ name: Merge to milestone branch
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
       - main
+    types: [closed]
 env:
   PR_NUMBER: ${{ github.event.number }}
 
@@ -13,6 +14,7 @@ jobs:
     name: merge-milestone
     environment: milestone
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     permissions:
       contents: read
       pull-requests: write
@@ -28,17 +30,11 @@ jobs:
           source: 'main'
           target: 'milestone'
           webhook_url:
-      - name: Get Pull Request Number
-        id: pr
-        run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_TEST }}
       - run: echo ${{ steps.pr.outputs.pull_request_number }}
       - name: attach label
         uses: actions/labeler@v5
         with:
           repo-token: "${{ secrets.TOKEN_TEST }}"
-          pr-number: "${{ steps.pr.outputs.pull_request_number }} "
   merge_staging:
     name: merge-staging
     environment: staging
