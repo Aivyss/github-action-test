@@ -1,0 +1,48 @@
+name: 'test-yaml.yml'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - test-branch-production-2
+    paths:
+      - '.github/workflows/test-yaml.yml'
+      - './*.go'
+      - './go.mod'
+      - './go.sum'
+      - './test'
+
+jobs:
+  merge_milestone:
+    name: merge-milestone
+    environment: milestone
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: merge
+        uses: mtanzi/action-automerge@v1
+        id: merge
+        with:
+          github_token: ${{ secrets.TOKEN_TEST }}
+          source: 'main'
+          target: 'milestone'
+          webhook_url:
+      - name: attach label
+        uses: action/labeler@v5
+        with:
+          repo-token: "${{ secrets.TOKEN_TEST }}"
+  merge_staging:
+    name: merge-staging
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: merge
+        uses: mtanzi/action-automerge@v1
+        id: merge
+        with:
+          github_token: ${{ secrets.TOKEN_TEST }}
+          source: 'main'
+          target: 'staging'
+          webhook_url:
