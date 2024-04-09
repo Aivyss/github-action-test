@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+      - action-test
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: Aivyss/github-action-test2@v1.1
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
