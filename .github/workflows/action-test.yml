@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches:
-      - action-test
+      - action-test-dummy
     types: [closed]
 
 jobs:
