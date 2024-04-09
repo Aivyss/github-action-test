@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: Aivyss/github-action-test2@v1.1
+        uses: Aivyss/github-action-test2@v1.2
+        with:
+          github_token: ${{ secrets.TOKEN_TEST }}
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
