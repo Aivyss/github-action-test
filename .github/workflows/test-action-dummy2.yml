@@ -1,0 +1,19 @@
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - dummy2
+    types: [closed]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: Aivyss/github-action-test2@v1.7.4
+        with:
+          github_token: ${{ secrets.TOKEN_TEST }}
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
