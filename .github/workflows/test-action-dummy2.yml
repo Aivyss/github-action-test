@@ -8,11 +8,11 @@ on:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: milestone labeling
     steps:
-      - name: Hello world action step
+      - name: milestone labeling
         id: hello
-        uses: Aivyss/github-action-test2@v1.9.0
+        uses: Aivyss/github-action-test2@v1.9.1
         with:
           github_token: ${{ secrets.TOKEN_TEST }}
           label: 'staging'
